@@ -31,12 +31,14 @@ This threat model represents a web-based user feedback system with the following
 - **SQL Database** (Internal Network boundary)
 
 ### Data Flows
+
 1. **Authentication Flow**: User → Web App → Auth Provider → LDAP → Response chain
 2. **Feedback Flow**: User → Web App → Database → Response chain
 
 ## 🛠️ Requirements
 
 ### System Requirements
+
 - **OS**: Linux/macOS
 - **Python**: 3.x
 - **Graphviz**: For diagram generation
@@ -44,6 +46,7 @@ This threat model represents a web-based user feedback system with the following
 - **PlantUML**: For sequence diagrams
 
 ### Python Dependencies
+
 ```
 pytm>=1.3.1
 graphviz>=0.20.1
@@ -55,12 +58,15 @@ seaborn>=0.12.0
 ## 🚀 Installation
 
 ### Option 1: Automated Setup (Recommended)
+
 ```bash
 ./setup.sh
 ```
+
 This script automatically installs all dependencies and verifies the installation.
 
 ### Option 2: Manual Setup
+
 ```bash
 # Install system dependencies (macOS)
 brew install graphviz openjdk@11
@@ -76,6 +82,7 @@ pip install -r requirements.txt
 ```
 
 ### Option 3: Development Setup
+
 ```bash
 # Setup development environment with pre-commit hooks
 make setup-dev
@@ -150,28 +157,36 @@ make help           # Show all commands
 ## 📈 Generated Outputs
 
 ### Data Flow Diagram
+
 ```bash
 make dfd
 # Generates: output/dfd.png
 ```
+
 Shows system architecture with trust boundaries, components, and data flows.
 
 ### Sequence Diagram
+
 ```bash
 make seq
 # Generates: output/seq.png
 ```
+
 Shows interaction sequences between system components.
 
 ### Colormap Diagram
+
 ```bash
 make colormap
 # Generates: output/dfd_colormap.png
 ```
+
 Risk-colored DFD where elements are painted red/yellow/green based on threat levels.
 
 ### Threat Report
+
 The system automatically identifies **165+ threats** using STRIDE methodology:
+
 - **Spoofing** threats
 - **Tampering** threats
 - **Repudiation** threats
@@ -182,6 +197,7 @@ The system automatically identifies **165+ threats** using STRIDE methodology:
 ## 🏗️ Architecture
 
 ### Code Structure
+
 ```
 ├── web_feedback_system_dfd.py    # Main threat model (Pythonic, SRP)
 ├── setup.sh                      # Automated dependency installer
@@ -193,6 +209,7 @@ The system automatically identifies **165+ threats** using STRIDE methodology:
 ```
 
 ### Design Principles
+
 - **Single Responsibility Principle**: Separate classes for model building, dataflows, and threat identification
 - **Builder Pattern**: Modular construction of threat model components
 - **Pythonic Code**: Clean, readable, well-documented Python following PEP 8
@@ -201,17 +218,20 @@ The system automatically identifies **165+ threats** using STRIDE methodology:
 ## 🔒 Security Features
 
 ### Trust Boundaries
+
 - **Internet**: External users and attackers
 - **DMZ**: Web-facing services with controlled access
 - **Internal Network**: Protected backend services
 
 ### Data Classifications
+
 - **SECRET**: User credentials and authentication tokens
 - **RESTRICTED**: Authentication verification data
 - **SENSITIVE**: Database responses and internal communications
 - **PUBLIC**: User feedback content
 
 ### Security Controls
+
 - Input validation and sanitization
 - Authentication scheme implementation
 - Encrypted data transmission (HTTPS/TLS)
@@ -221,6 +241,7 @@ The system automatically identifies **165+ threats** using STRIDE methodology:
 ## 🧪 Testing
 
 ### Verify Installation
+
 ```bash
 # Test all components
 make test-args
@@ -231,6 +252,7 @@ python web_feedback_system_dfd.py --dfd > /dev/null && echo "DFD OK"
 ```
 
 ### Validate Threat Model
+
 ```bash
 # Syntax validation
 make validate
@@ -242,6 +264,7 @@ make build
 ## 👨‍💻 Development Workflow
 
 ### Pre-commit Hooks
+
 This project uses pre-commit hooks to ensure code quality and consistency:
 
 ```bash
@@ -261,6 +284,7 @@ make update-hooks
 ### Code Quality Tools
 
 #### Formatting
+
 ```bash
 # Format code with Black and isort
 make format
@@ -271,6 +295,7 @@ isort .
 ```
 
 #### Linting
+
 ```bash
 # Run all linting tools
 make lint
@@ -282,6 +307,7 @@ bandit -r .
 ```
 
 #### Security Checks
+
 ```bash
 # Run security analysis
 make security
@@ -294,6 +320,7 @@ safety check
 ```
 
 #### Complete Quality Check
+
 ```bash
 # Run all quality checks at once
 make quality
@@ -314,6 +341,7 @@ The pre-commit configuration includes:
 ## 📚 Examples
 
 ### Generate Complete Threat Analysis
+
 ```bash
 # 1. Generate all diagrams
 make diagrams
@@ -327,6 +355,7 @@ python web_feedback_system_dfd.py --list | grep "XSS"
 ```
 
 ### Create PNG Diagrams (Following pytm docs)
+
 ```bash
 # Data Flow Diagram
 python web_feedback_system_dfd.py --dfd | dot -Tpng -o my_dfd.png
@@ -338,6 +367,7 @@ python web_feedback_system_dfd.py --seq | java -Djava.awt.headless=true -jar pla
 ## 🔧 Customization
 
 ### Adding New Components
+
 ```python
 # In web_feedback_system_dfd.py
 new_server = ComponentFactory.create_server(
@@ -351,12 +381,14 @@ new_server = ComponentFactory.create_server(
 ```
 
 ### Adding Custom Threats
+
 ```python
 # Set custom threats file
 tm.threatsFile = "custom_threats.json"
 ```
 
 ### Modifying Data Classifications
+
 ```python
 custom_data = DataFactory.create_data(
     DataConfig(
@@ -374,12 +406,14 @@ custom_data = DataFactory.create_data(
 ### Common Issues
 
 **PlantUML not found**
+
 ```bash
 # Download manually
 wget -O plantuml.jar http://sourceforge.net/projects/plantuml/files/plantuml.jar/download
 ```
 
 **Graphviz not installed**
+
 ```bash
 # macOS
 brew install graphviz
@@ -389,17 +423,20 @@ sudo apt-get install graphviz
 ```
 
 **Python import errors**
+
 ```bash
 # Reinstall pytm
 pip install --upgrade pytm>=1.3.1
 ```
 
 **Permission denied on setup.sh**
+
 ```bash
 chmod +x setup.sh
 ```
 
 **Pre-commit hooks failing**
+
 ```bash
 # Update hooks
 make update-hooks
@@ -409,6 +446,7 @@ git commit --no-verify
 ```
 
 ### Debug Mode
+
 ```bash
 # Enable debug output
 python web_feedback_system_dfd.py --debug --dfd
@@ -426,6 +464,7 @@ python web_feedback_system_dfd.py --debug --dfd
 ## 🤝 Contributing
 
 ### Development Setup
+
 1. Fork the repository
 2. Clone your fork: `git clone <your-fork-url>`
 3. Setup development environment: `make setup-dev`
@@ -436,6 +475,7 @@ python web_feedback_system_dfd.py --debug --dfd
 8. Push and create a pull request
 
 ### Code Standards
+
 - Follow PEP 8 and use Black for formatting
 - Add type hints to all functions
 - Write comprehensive docstrings
@@ -449,16 +489,16 @@ This project follows the same license as OWASP pytm (MIT License).
 
 ## 🎯 Key Features Summary
 
-✅ **Complete OWASP pytm Implementation**  
-✅ **165+ Automatic Threat Detection**  
-✅ **Visual DFD and Sequence Diagrams**  
-✅ **Risk-based Color Mapping**  
-✅ **Pythonic Code with SRP**  
-✅ **Automated Setup Script**  
-✅ **Comprehensive Makefile**  
-✅ **Pre-commit Hooks & Code Quality**  
-✅ **Full CLI Compatibility**  
-✅ **Production Ready**  
+✅ **Complete OWASP pytm Implementation**
+✅ **165+ Automatic Threat Detection**
+✅ **Visual DFD and Sequence Diagrams**
+✅ **Risk-based Color Mapping**
+✅ **Pythonic Code with SRP**
+✅ **Automated Setup Script**
+✅ **Comprehensive Makefile**
+✅ **Pre-commit Hooks & Code Quality**
+✅ **Full CLI Compatibility**
+✅ **Production Ready**
 
 ---
 

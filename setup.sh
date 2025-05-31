@@ -2,7 +2,7 @@
 
 # Setup script for Web Feedback System Threat Model
 # Following OWASP pytm documentation strictly
-# 
+#
 # This script automatically installs all required dependencies for pytm threat modeling
 
 set -e  # Exit on any error
@@ -124,7 +124,7 @@ else
         echo "❌ Please install wget or curl to download PlantUML."
         exit 1
     fi
-    
+
     if [[ -f "plantuml.jar" ]]; then
         echo "✅ PlantUML downloaded successfully"
     else
@@ -155,11 +155,11 @@ if [[ -f "requirements.txt" ]]; then
     fi
 else
     echo "📋 Installing pytm directly..."
-    if $PYTHON_CMD -m pip install pytm>=1.3.1 graphviz>=0.20.1 2>/dev/null; then
+    if $PYTHON_CMD -m pip install "pytm>=1.3.1" "graphviz>=0.20.1" 2>/dev/null; then
         echo "✅ Core dependencies installed"
     else
         echo "🔧 Using --break-system-packages flag..."
-        $PYTHON_CMD -m pip install --break-system-packages pytm>=1.3.1 graphviz>=0.20.1
+        $PYTHON_CMD -m pip install --break-system-packages "pytm>=1.3.1" "graphviz>=0.20.1"
         echo "✅ Core dependencies installed"
     fi
 fi
@@ -204,4 +204,4 @@ echo "   make seq            # Generate Sequence Diagram"
 echo "   make list-threats   # List all available threats"
 echo "   python web_feedback_system_dfd.py --help  # Show all options"
 echo ""
-echo "📖 See README.md for complete documentation" 
+echo "📖 See README.md for complete documentation"

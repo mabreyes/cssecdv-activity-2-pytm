@@ -1,6 +1,6 @@
 # Makefile for Web Feedback System Threat Model
 # Following OWASP pytm documentation strictly
-# 
+#
 # This Makefile provides convenient targets for generating threat model outputs
 # using OWASP pytm framework exactly as documented.
 
@@ -262,4 +262,4 @@ help:
 	@echo "Development workflow:"
 	@echo "  make setup-dev    # Setup development environment"
 	@echo "  make quality      # Run all code quality checks"
-	@echo "  make pre-commit   # Run pre-commit hooks on all files" 
+	@echo "  make pre-commit   # Run pre-commit hooks on all files"

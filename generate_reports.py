@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-"""
-Report Generation Utility for Web Feedback System Threat Model
+"""Report Generation Utility for Web Feedback System Threat Model.
 
 This module provides utilities to generate various outputs from the threat model:
 - Data Flow Diagrams (DFD)
@@ -15,63 +14,68 @@ Usage:
 """
 
 import sys
-import os
 from pathlib import Path
 
 
-def generate_dfd():
+def generate_dfd() -> None:
     """Generate Data Flow Diagram using the threat model."""
     print("Generating Data Flow Diagram...")
-    
+
     # Import and run the threat model with DFD output
-    from web_feedback_system_dfd import ThreatModelBuilder, DataflowBuilder
-    
+    from web_feedback_system_dfd import ThreatModelBuilder
+
     try:
         # Build the threat model
         model_builder = ThreatModelBuilder()
-        dataflow_builder = DataflowBuilder(model_builder)
-        
+        threat_model = model_builder.get_threat_model()
+
         # Generate DFD output
-        sys.argv = ['web_feedback_system_dfd.py', '--dfd']
-        model_builder.tm.process()
-        
+        sys.argv = ["web_feedback_system_dfd.py", "--dfd"]
+        threat_model.process()
+
         print("DFD generation complete!")
-        print("To generate PNG: python3 web_feedback_system_dfd.py --dfd | dot -Tpng -o web_feedback_system_dfd.png")
-        
+        print(
+            "To generate PNG: python3 web_feedback_system_dfd.py --dfd | "
+            "dot -Tpng -o web_feedback_system_dfd.png"
+        )
+
     except Exception as e:
         print(f"Error generating DFD: {e}")
 
 
-def generate_sequence_diagram():
+def generate_sequence_diagram() -> None:
     """Generate sequence diagram using the threat model."""
     print("Generating Sequence Diagram...")
-    
-    from web_feedback_system_dfd import ThreatModelBuilder, DataflowBuilder
-    
+
+    from web_feedback_system_dfd import ThreatModelBuilder
+
     try:
         # Build the threat model
         model_builder = ThreatModelBuilder()
-        dataflow_builder = DataflowBuilder(model_builder)
-        
+        threat_model = model_builder.get_threat_model()
+
         # Generate sequence diagram output
-        sys.argv = ['web_feedback_system_dfd.py', '--seq']
-        model_builder.tm.process()
-        
+        sys.argv = ["web_feedback_system_dfd.py", "--seq"]
+        threat_model.process()
+
         print("Sequence diagram generation complete!")
-        print("To generate PNG: python3 web_feedback_system_dfd.py --seq | java -jar plantuml.jar -tpng -pipe > sequence.png")
-        
+        print(
+            "To generate PNG: python3 web_feedback_system_dfd.py --seq | "
+            "java -jar plantuml.jar -tpng -pipe > sequence.png"
+        )
+
     except Exception as e:
         print(f"Error generating sequence diagram: {e}")
 
 
-def generate_threat_report():
+def generate_threat_report() -> None:
     """Generate comprehensive threat report."""
     print("Generating Threat Report...")
-    
+
     # Create output directory
     output_dir = Path("output")
     output_dir.mkdir(exist_ok=True)
-    
+
     # Create a comprehensive markdown report
     report_template = """# Web-based User Feedback System - Threat Model Report
 
@@ -79,7 +83,9 @@ def generate_threat_report():
 
 **System Name:** Web-based User Feedback System
 
-**Description:** A web application that allows users to register, login, and submit feedback comments. The system integrates with LDAP for authentication and stores feedback in a SQL database.
+**Description:** A web application that allows users to register, login, and
+submit feedback comments. The system integrates with LDAP for authentication
+and stores feedback in a SQL database.
 
 ## System Architecture
 
@@ -166,55 +172,60 @@ The system consists of the following components:
 ---
 *Report generated using OWASP pytm*
 """
-    
+
     try:
         report_file = output_dir / "threat_report.md"
-        with open(report_file, 'w') as f:
+        with open(report_file, "w") as f:
             f.write(report_template)
-        
+
         print(f"Threat report saved to: {report_file}")
-        
+
     except Exception as e:
         print(f"Error generating threat report: {e}")
 
 
-def generate_json_export():
+def generate_json_export() -> None:
     """Generate JSON export of the threat model."""
     print("Generating JSON export...")
-    
-    from web_feedback_system_dfd import ThreatModelBuilder, DataflowBuilder
-    
+
+    from web_feedback_system_dfd import ThreatModelBuilder
+
     try:
         # Build the threat model
         model_builder = ThreatModelBuilder()
-        dataflow_builder = DataflowBuilder(model_builder)
-        
+        threat_model = model_builder.get_threat_model()
+
         # Generate JSON output
-        sys.argv = ['web_feedback_system_dfd.py', '--json', 'output/web_feedback_system.json']
-        model_builder.tm.process()
-        
+        sys.argv = [
+            "web_feedback_system_dfd.py",
+            "--json",
+            "output/web_feedback_system.json",
+        ]
+        threat_model.process()
+
         print("JSON export complete!")
-        
+
     except Exception as e:
         print(f"Error generating JSON export: {e}")
 
 
-def list_threats():
+def list_threats() -> None:
     """List all available threats in pytm."""
     print("Available threats in pytm:")
-    
+
     from web_feedback_system_dfd import ThreatModelBuilder
-    
+
     try:
         model_builder = ThreatModelBuilder()
-        sys.argv = ['web_feedback_system_dfd.py', '--list']
-        model_builder.tm.process()
-        
+        threat_model = model_builder.get_threat_model()
+        sys.argv = ["web_feedback_system_dfd.py", "--list"]
+        threat_model.process()
+
     except Exception as e:
         print(f"Error listing threats: {e}")
 
 
-def show_help():
+def show_help() -> None:
     """Show help information."""
     help_text = """
 Web Feedback System Threat Model - Report Generator
@@ -224,7 +235,7 @@ Usage:
 
 Commands:
     dfd         Generate Data Flow Diagram
-    seq         Generate Sequence Diagram  
+    seq         Generate Sequence Diagram
     report      Generate comprehensive threat report
     json        Generate JSON export
     list        List available threats
@@ -237,23 +248,24 @@ Examples:
 
 To generate visual diagrams:
     python3 web_feedback_system_dfd.py --dfd | dot -Tpng -o dfd.png
-    python3 web_feedback_system_dfd.py --seq | java -jar plantuml.jar -tpng -pipe > seq.png
+    python3 web_feedback_system_dfd.py --seq | java -jar plantuml.jar \\
+        -tpng -pipe > seq.png
 """
     print(help_text)
 
 
-def main():
-    """Main function to handle command line arguments."""
+def main() -> None:
+    """Handle command line arguments."""
     if len(sys.argv) < 2:
         show_help()
         return
-    
+
     command = sys.argv[1].lower()
-    
+
     # Create output directory
     output_dir = Path("output")
     output_dir.mkdir(exist_ok=True)
-    
+
     if command == "dfd":
         generate_dfd()
     elif command == "seq":
@@ -272,4 +284,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
+    main()
