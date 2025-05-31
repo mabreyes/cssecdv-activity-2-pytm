@@ -6,7 +6,8 @@ It includes functionality for:
 - Special command handling (list, describe, help)
 - Command line argument configuration
 
-Author: Generated using OWASP pytm
+Author: Marc Reyes <hi@marcr.xyz>
+Generated using OWASP pytm
 """
 
 import argparse

@@ -4,6 +4,8 @@
 This script generates visual diagrams from the threat model outputs.
 Requires Graphviz for DFD generation and Java + PlantUML for sequence diagrams.
 
+Author: Marc Reyes <hi@marcr.xyz>
+
 Usage:
     python3 generate_visuals.py
 """

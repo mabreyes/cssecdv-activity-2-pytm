@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# Setup script for Web Feedback System Threat Model
-# Following OWASP pytm documentation strictly
+# Activity 2 - Threat Model - Data Flow Diagram - Web-based User Feedback System
+# Automated Setup Script
+# Author: Marc Reyes <hi@marcr.xyz>
 #
-# This script automatically installs all required dependencies for pytm threat modeling
+# This script automatically installs all dependencies required for the threat model
+# following OWASP pytm documentation and best practices.
 
 set -e  # Exit on any error
 

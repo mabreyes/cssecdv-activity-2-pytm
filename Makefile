@@ -1,5 +1,6 @@
 # Makefile for Web Feedback System Threat Model
 # Following OWASP pytm documentation strictly
+# Author: Marc Reyes <hi@marcr.xyz>
 #
 # This Makefile provides convenient targets for generating threat model outputs
 # using OWASP pytm framework exactly as documented.

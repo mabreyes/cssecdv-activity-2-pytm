@@ -2,7 +2,8 @@
   "metadata": {
     "name": "Web-based User Feedback System",
     "description": "A web application that allows users to register, login, and submit feedback comments. The system integrates with LDAP for authentication and stores feedback in a SQL database.",
-    "generated_at": "2025-05-31T10:59:27.566455",
+    "author": "Marc Reyes <hi@marcr.xyz>",
+    "generated_at": "2025-05-31T11:07:49.259363",
     "pytm_version": "1.3.1",
     "model_version": "1.0.0"
   },

@@ -1,5 +1,6 @@
 # Activity 2 - Threat Model - Data Flow Diagram - Web-based User Feedback System
 # Python dependencies
+# Author: Marc Reyes <hi@marcr.xyz>
 
 # ============================================================================
 # CORE DEPENDENCIES (Required for basic functionality)

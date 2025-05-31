@@ -4,6 +4,8 @@
 
 A comprehensive threat model for a web-based user feedback system using **OWASP pytm** framework. This implementation follows the official pytm documentation strictly and demonstrates best practices for threat modeling as code.
 
+**Author:** Marc Reyes <hi@marcr.xyz>
+
 ## 🎯 Quick Start
 
 ```bash
@@ -635,6 +637,16 @@ This project follows the same license as OWASP pytm (MIT License).
 ✅ **Pre-commit Hooks & Code Quality**
 ✅ **Full CLI Compatibility**
 ✅ **Production Ready**
+
+---
+
+## 👤 Author
+
+**Marc Reyes**
+📧 Email: [hi@marcr.xyz](mailto:hi@marcr.xyz)
+🌐 Website: [marcr.xyz](https://marcr.xyz)
+
+This threat model implementation was created as part of Activity 2 for the Computer Systems Security course, demonstrating comprehensive threat modeling using OWASP pytm framework with industry best practices.
 
 ---
 

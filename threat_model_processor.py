@@ -7,7 +7,8 @@ It includes functionality for:
 - Output generation (DFD, sequence diagrams, reports, JSON)
 - Debug information and model configuration
 
-Author: Generated using OWASP pytm
+Author: Marc Reyes <hi@marcr.xyz>
+Generated using OWASP pytm
 """
 
 import argparse
@@ -117,6 +118,7 @@ class ThreatModelProcessor:
                 "metadata": {
                     "name": self.threat_model.name,
                     "description": self.threat_model.description,
+                    "author": "Marc Reyes <hi@marcr.xyz>",
                     "generated_at": datetime.now().isoformat(),
                     "pytm_version": "1.3.1",
                     "model_version": "1.0.0",

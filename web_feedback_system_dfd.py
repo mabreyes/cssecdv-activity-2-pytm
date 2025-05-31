@@ -7,7 +7,8 @@ based on the DFD shown in the provided image. The system includes:
 - Feedback submission and storage
 - Integration with LDAP and Authorization Provider
 
-Author: Generated using OWASP pytm
+Author: Marc Reyes <hi@marcr.xyz>
+Generated using OWASP pytm
 """
 
 import sys

@@ -7,6 +7,8 @@ This module provides utilities to generate various outputs from the threat model
 - Threat Reports
 - JSON exports
 
+Author: Marc Reyes <hi@marcr.xyz>
+
 Usage:
     python generate_reports.py dfd
     python generate_reports.py seq
