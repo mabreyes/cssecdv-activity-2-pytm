@@ -47,6 +47,10 @@ This threat model represents a web-based user feedback system with the following
 
 ### Python Dependencies
 
+All dependencies are consolidated in a single `requirements.txt` file:
+
+**Core Dependencies (Required):**
+
 ```
 pytm>=1.3.1
 graphviz>=0.20.1
@@ -54,6 +58,21 @@ pandas>=1.5.0
 matplotlib>=3.6.0
 seaborn>=0.12.0
 ```
+
+**Development Dependencies (Optional):**
+
+```
+pre-commit>=3.0.0
+black>=23.0.0
+isort>=5.12.0
+flake8>=6.0.0
+mypy>=1.0.0
+bandit>=1.7.0
+pytest>=7.0.0
+# ... and more (see requirements.txt)
+```
+
+Install all dependencies with: `pip install -r requirements.txt`
 
 ## 🚀 Installation
 
@@ -88,7 +107,7 @@ pip install -r requirements.txt
 make setup-dev
 
 # Or manually:
-pip install -r requirements-dev.txt
+pip install -r requirements.txt
 pre-commit install
 pre-commit install --hook-type commit-msg
 ```

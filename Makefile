@@ -26,7 +26,7 @@ setup:
 .PHONY: setup-dev
 setup-dev:
 	@echo "Setting up development environment..."
-	$(PYTHON) -m pip install -r requirements-dev.txt
+	$(PYTHON) -m pip install -r requirements.txt
 	pre-commit install
 	pre-commit install --hook-type commit-msg
 	@echo "Development environment setup complete!"
