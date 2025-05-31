@@ -168,6 +168,12 @@ python3 web_feedback_system_dfd.py --dfd --colormap | dot -Tpng -o output/web_fe
 # Generate sequence diagram
 python3 web_feedback_system_dfd.py --seq | java -jar plantuml.jar -tpng -pipe > output/web_feedback_system_seq.png
 
+# Generate JSON export
+python3 web_feedback_system_dfd.py --json output/web_feedback_system.json
+
+# Generate threat report
+python3 web_feedback_system_dfd.py --list > output/web_feedback_system_threats.txt
+
 # Or use the Makefile shortcuts
 make dfd        # Creates output/dfd.png
 make seq        # Creates output/seq.png
@@ -222,16 +228,88 @@ Risk-colored DFD where elements are painted red/yellow/green based on threat lev
   - Feedback submission and storage process
   - Request/response patterns between components
 
+#### Available Outputs Summary
+
+| Output Type           | File                                          | Description                       | Size  |
+| --------------------- | --------------------------------------------- | --------------------------------- | ----- |
+| **Data Flow Diagram** | `output/web_feedback_system_dfd.png`          | System architecture visualization | 103KB |
+| **Colormap DFD**      | `output/web_feedback_system_dfd_colormap.png` | Risk-colored architecture         | 107KB |
+| **Sequence Diagram**  | `output/web_feedback_system_seq.png`          | Interaction flow visualization    | 40KB  |
+| **JSON Export**       | `output/web_feedback_system.json`             | Complete model data               | 159KB |
+| **Threat Report**     | `output/web_feedback_system_threats.txt`      | List of 94 identified threats     | 3.5KB |
+
+### JSON Export
+
+```bash
+python3 web_feedback_system_dfd.py --json output/web_feedback_system.json
+# Generates: output/web_feedback_system.json
+```
+
+Exports the complete threat model data in JSON format, including metadata, boundaries, elements, dataflows, and threat analysis results.
+
+**Sample JSON structure:**
+
+```json
+{
+  "metadata": {
+    "name": "Web-based User Feedback System",
+    "description": "A web application that allows users to register, login, and submit feedback comments...",
+    "generated_at": "2025-05-31T10:59:27.566455",
+    "pytm_version": "1.3.1",
+    "model_version": "1.0.0"
+  },
+  "boundaries": [
+    { "name": "Internet", "type": "Boundary" },
+    { "name": "DMZ", "type": "Boundary" },
+    { "name": "Internal Network", "type": "Boundary" }
+  ],
+  "elements": [
+    {
+      "name": "Web Application",
+      "type": "Server",
+      "description": "Main web application server handling user requests",
+      "boundary": "DMZ",
+      "properties": {
+        "OS": "Linux",
+        "isHardened": true,
+        "implementsAuthenticationScheme": true,
+        "sanitizesInput": true,
+        "validatesInput": true
+      }
+    }
+  ]
+}
+```
+
+[📄 View Complete JSON Export](output/web_feedback_system.json)
+
 ### Threat Report
 
-The system automatically identifies **165+ threats** using STRIDE methodology:
+```bash
+python3 web_feedback_system_dfd.py --list > output/web_feedback_system_threats.txt
+# Generates: output/web_feedback_system_threats.txt
+```
 
-- **Spoofing** threats
-- **Tampering** threats
-- **Repudiation** threats
-- **Information Disclosure** threats
-- **Denial of Service** threats
-- **Elevation of Privilege** threats
+Lists all identified threats using STRIDE methodology. The system identifies **94 unique threats** across all categories.
+
+**Sample threats identified:**
+
+```
+INP01 - Buffer Overflow via Environment Variables
+INP05 - Command Line Execution through SQL Injection
+INP06 - SQL Injection through SOAP Parameter Tampering
+SC01 - JSON Hijacking (aka JavaScript Hijacking)
+AA01 - Authentication Abuse/ByPass
+DE01 - Interception
+AC01 - Privilege Abuse
+INP09 - LDAP Injection
+SC02 - XSS Targeting Non-Script Elements
+INP39 - Reflected XSS
+INP40 - Stored XSS
+AC21 - Cross Site Request Forgery
+```
+
+[📄 View Complete Threat List](output/web_feedback_system_threats.txt)
 
 ## 🏗️ Architecture
 

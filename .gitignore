@@ -188,6 +188,8 @@ output/*.tmp
 !output/web_feedback_system_dfd.png
 !output/web_feedback_system_dfd_colormap.png
 !output/web_feedback_system_seq.png
+!output/web_feedback_system.json
+!output/web_feedback_system_threats.txt
 
 # PlantUML JAR (can be downloaded)
 plantuml.jar
