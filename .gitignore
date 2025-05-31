@@ -166,8 +166,15 @@ cython_debug/
 *.code-workspace
 
 # Threat Model Specific Files
-# Generated output files
-output/
+# Generated output files (but allow sample images)
+output/*.dot
+output/*.puml
+output/*.json
+output/*.html
+output/*.svg
+output/*.pdf
+output/*.log
+output/*.tmp
 *.png
 *.svg
 *.pdf
@@ -176,6 +183,11 @@ output/
 *.json
 *.html
 *.md.bak
+
+# Allow sample DFD images for README
+!output/web_feedback_system_dfd.png
+!output/web_feedback_system_dfd_colormap.png
+!output/web_feedback_system_seq.png
 
 # PlantUML JAR (can be downloaded)
 plantuml.jar

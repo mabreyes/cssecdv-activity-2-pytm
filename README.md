@@ -154,6 +154,26 @@ make test-args      # Test all CLI arguments
 make help           # Show all commands
 ```
 
+## 🎨 Quick Generation
+
+Generate the sample diagrams shown below:
+
+```bash
+# Generate regular DFD
+python3 web_feedback_system_dfd.py --dfd | dot -Tpng -o output/web_feedback_system_dfd.png
+
+# Generate colormap DFD
+python3 web_feedback_system_dfd.py --dfd --colormap | dot -Tpng -o output/web_feedback_system_dfd_colormap.png
+
+# Generate sequence diagram
+python3 web_feedback_system_dfd.py --seq | java -jar plantuml.jar -tpng -pipe > output/web_feedback_system_seq.png
+
+# Or use the Makefile shortcuts
+make dfd        # Creates output/dfd.png
+make seq        # Creates output/seq.png
+make colormap   # Creates output/dfd_colormap.png
+```
+
 ## 📈 Generated Outputs
 
 ### Data Flow Diagram
@@ -165,6 +185,8 @@ make dfd
 
 Shows system architecture with trust boundaries, components, and data flows.
 
+![Data Flow Diagram](output/web_feedback_system_dfd.png)
+
 ### Sequence Diagram
 
 ```bash
@@ -174,6 +196,8 @@ make seq
 
 Shows interaction sequences between system components.
 
+![Sequence Diagram](output/web_feedback_system_seq.png)
+
 ### Colormap Diagram
 
 ```bash
@@ -182,6 +206,21 @@ make colormap
 ```
 
 Risk-colored DFD where elements are painted red/yellow/green based on threat levels.
+
+![Colormap Data Flow Diagram](output/web_feedback_system_dfd_colormap.png)
+
+#### Diagram Comparison
+
+- **Regular DFD**: Shows the system architecture with standard element styling
+- **Colormap DFD**: Adds risk-based color coding where:
+  - 🔴 **Red**: High-risk elements with multiple threats
+  - 🟡 **Yellow**: Medium-risk elements with some threats
+  - 🟢 **Green**: Low-risk elements with minimal threats
+  - Elements are colored based on STRIDE threat analysis results
+- **Sequence Diagram**: Shows the chronological flow of interactions between system components, including:
+  - User authentication flow through LDAP
+  - Feedback submission and storage process
+  - Request/response patterns between components
 
 ### Threat Report
 
