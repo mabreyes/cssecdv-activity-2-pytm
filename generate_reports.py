@@ -172,7 +172,7 @@ The system consists of the following components:
 - Authentication scheme implementations
 
 ---
-*Report generated using OWASP pytm*
+*Report *
 """
 
     try:

@@ -8,7 +8,7 @@ It includes functionality for:
 - Debug information and model configuration
 
 Author: Marc Reyes <hi@marcr.xyz>
-Generated using OWASP pytm
+
 """
 
 import argparse

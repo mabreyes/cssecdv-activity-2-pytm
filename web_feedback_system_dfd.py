@@ -8,7 +8,7 @@ The system includes:
 - Integration with LDAP and Authorization Provider
 
 Author: Marc Reyes <hi@marcr.xyz>
-Generated using OWASP pytm
+
 """
 
 import sys

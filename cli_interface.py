@@ -7,7 +7,7 @@ It includes functionality for:
 - Command line argument configuration
 
 Author: Marc Reyes <hi@marcr.xyz>
-Generated using OWASP pytm
+
 """
 
 import argparse
