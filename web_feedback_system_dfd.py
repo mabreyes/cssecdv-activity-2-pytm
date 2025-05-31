@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Activity 2 - Threat Model - Data Flow Diagram - Web-based User Feedback System.
 
-This module defines a threat model for a web-based user feedback system
-based on the DFD shown in the provided image. The system includes:
+This module defines a threat model for a web-based user feedback system.
+The system includes:
 - User registration and authentication
 - Feedback submission and storage
 - Integration with LDAP and Authorization Provider
