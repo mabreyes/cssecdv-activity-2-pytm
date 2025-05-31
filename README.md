@@ -6,12 +6,39 @@ A comprehensive threat model for a web-based user feedback system using **OWASP 
 
 **Author:** Marc Reyes <hi@marcr.xyz>
 
+## 📚 Table of Contents
+
+- [🎯 Quick Start](#-quick-start)
+- [📋 System Overview](#-system-overview)
+- [🛠️ Requirements](#️-requirements)
+- [🚀 Installation](#-installation)
+- [📊 Usage](#-usage)
+- [🎨 Quick Generation](#-quick-generation)
+- [📈 Generated Outputs](#-generated-outputs)
+  - [Data Flow Diagram](#data-flow-diagram)
+  - [Sequence Diagram](#sequence-diagram)
+  - [Colormap Diagram](#colormap-diagram)
+  - [JSON Export](#json-export)
+  - [Threat Report](#threat-report)
+- [🏗️ Architecture](#️-architecture)
+- [🔒 Security Features](#-security-features)
+- [🧪 Testing](#-testing)
+- [👨‍💻 Development Workflow](#-development-workflow)
+- [📚 Examples](#-examples)
+- [🔧 Customization](#-customization)
+- [🐛 Troubleshooting](#-troubleshooting)
+- [📖 Documentation References](#-documentation-references)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+- [🎯 Key Features Summary](#-key-features-summary)
+- [👤 Author](#-author)
+
 ## 🎯 Quick Start
 
 ```bash
 # 1. Clone and setup
-git clone <repository-url>
-cd cssecdv-pr-1
+git clone https://github.com/mabreyes/cssecdv-activity-2-pytm.git
+cd cssecdv-activity-2-pytm
 
 # 2. Run automated setup
 ./setup.sh
