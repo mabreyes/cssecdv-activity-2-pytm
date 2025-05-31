@@ -175,9 +175,9 @@ report: $(OUTPUT_DIR)
 # Generate JSON export (if working)
 .PHONY: json
 json: $(OUTPUT_DIR)
-	@echo "Attempting JSON export..."
-	-$(PYTHON) $(MODEL_FILE) --json $(OUTPUT_DIR)/threat_model.json
-	@echo "JSON export attempted (may fail due to pytm limitations)"
+	@echo "Generating JSON export..."
+	$(PYTHON) $(MODEL_FILE) --json $(OUTPUT_DIR)/threat_model.json
+	@echo "JSON export generated: $(OUTPUT_DIR)/threat_model.json"
 
 # Clean generated files
 .PHONY: clean
@@ -236,7 +236,7 @@ help:
 	@echo "  list-elements- List all available elements"
 	@echo "  describe     - Describe Element properties"
 	@echo "  report       - Generate threat report (requires template)"
-	@echo "  json         - Generate JSON export (experimental)"
+	@echo "  json         - Generate JSON export"
 	@echo ""
 	@echo "Code Quality and Development:"
 	@echo "  install-hooks- Install pre-commit hooks"
