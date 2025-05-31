@@ -1,0 +1,14 @@
+# Activity 2 - Threat Model - Data Flow Diagram - Web-based User Feedback System
+# Python dependencies
+
+# Core threat modeling dependencies
+pytm>=1.3.1
+graphviz>=0.20.1
+
+# Additional dependencies for enhanced functionality
+pandas>=1.5.0
+matplotlib>=3.6.0
+seaborn>=0.12.0
+
+# Development dependencies (optional - install with: pip install -r requirements-dev.txt)
+# Or install with: pip install -e ".[dev]" if using pyproject.toml 

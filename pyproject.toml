@@ -1,0 +1,275 @@
+# Activity 2 - Threat Model - Data Flow Diagram - Web-based User Feedback System
+# Python project configuration
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "web-feedback-threat-model"
+version = "1.0.0"
+description = "Activity 2 - Threat Model - Data Flow Diagram - Web-based User Feedback System"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "OWASP pytm", email = "pytm@owasp.org"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "pytm>=1.3.1",
+    "graphviz>=0.20.1",
+    "pandas>=1.5.0",
+    "matplotlib>=3.6.0",
+    "seaborn>=0.12.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pre-commit>=3.0.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+    "bandit>=1.7.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "safety>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/OWASP/pytm"
+Documentation = "https://owasp.org/www-project-pytm/"
+Repository = "https://github.com/OWASP/pytm"
+"Bug Tracker" = "https://github.com/OWASP/pytm/issues"
+
+[project.scripts]
+threat-model = "web_feedback_system_dfd:main"
+
+# Black configuration
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+  | output
+)/
+'''
+
+# isort configuration
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+src_paths = [".", "tests"]
+known_first_party = ["web_feedback_system_dfd"]
+known_third_party = ["pytm", "pandas", "matplotlib", "seaborn"]
+
+# mypy configuration
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+    "pytm.*",
+    "graphviz.*",
+    "pandas.*",
+    "matplotlib.*",
+    "seaborn.*",
+]
+ignore_missing_imports = true
+
+# pytest configuration
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=web_feedback_system_dfd",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--cov-fail-under=80",
+]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["web_feedback_system_dfd"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "setup.py",
+    "*/venv/*",
+    "*/.venv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+# Bandit configuration
+[tool.bandit]
+exclude_dirs = ["tests", "build", "dist", "output"]
+skips = ["B101", "B601"]  # Skip assert_used and shell_injection_process_start
+
+# Flake8 configuration (in setup.cfg format for compatibility)
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503", "D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107"]
+max-complexity = 10
+select = ["C", "E", "F", "W", "B", "B950"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "output",
+    ".venv",
+    "venv",
+]
+
+# Pydocstyle configuration
+[tool.pydocstyle]
+convention = "google"
+add-ignore = ["D100", "D101", "D102", "D103", "D104", "D105", "D106", "D107"]
+match-dir = "(?!tests).*"
+
+# Commitizen configuration
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "1.0.0"
+tag_format = "v$version"
+version_files = [
+    "pyproject.toml:version",
+]
+bump_message = "bump: version $current_version → $new_version"
+update_changelog_on_bump = true
+annotated_tag = true
+
+[tool.commitizen.customize]
+message_template = "{{change_type}}{{scope}}: {{message}}"
+example = "feature: add new threat detection algorithm"
+schema = "<type>(<scope>): <subject>"
+schema_pattern = "^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert)(\\(.+\\))?: .{1,50}"
+
+bump_pattern = "^(feat|fix|perf|refactor)"
+bump_map = {
+    "feat" = "MINOR",
+    "fix" = "PATCH",
+    "perf" = "PATCH",
+    "refactor" = "PATCH"
+}
+
+change_type_order = [
+    "feat",
+    "fix", 
+    "refactor",
+    "perf",
+    "test",
+    "build",
+    "ci",
+    "docs",
+    "style",
+    "chore",
+    "revert"
+]
+
+[[tool.commitizen.customize.questions]]
+type = "list"
+name = "change_type"
+choices = [
+    {value = "feat", name = "feat: A new feature"},
+    {value = "fix", name = "fix: A bug fix"},
+    {value = "docs", name = "docs: Documentation only changes"},
+    {value = "style", name = "style: Changes that do not affect the meaning of the code"},
+    {value = "refactor", name = "refactor: A code change that neither fixes a bug nor adds a feature"},
+    {value = "perf", name = "perf: A code change that improves performance"},
+    {value = "test", name = "test: Adding missing tests or correcting existing tests"},
+    {value = "build", name = "build: Changes that affect the build system or external dependencies"},
+    {value = "ci", name = "ci: Changes to our CI configuration files and scripts"},
+    {value = "chore", name = "chore: Other changes that don't modify src or test files"},
+    {value = "revert", name = "revert: Reverts a previous commit"},
+]
+message = "Select the type of change that you're committing"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "scope"
+message = "What is the scope of this change? (class or file name): (press [enter] to skip)"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "subject"
+message = "Write a short, imperative tense description of the change (max 50 chars):\n"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "body"
+message = "Provide a longer description of the change: (press [enter] to skip)\n"
+
+[[tool.commitizen.customize.questions]]
+type = "confirm"
+name = "is_breaking_change"
+message = "Is this a BREAKING CHANGE? Correlates with MAJOR in SemVer"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "breaking_change_content"
+message = "Describe the breaking change: \n"
+filter = "lambda x: x if x else ''" 
